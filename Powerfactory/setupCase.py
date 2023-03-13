@@ -14,7 +14,7 @@ def createFault(app : PF.DataObject, case : SimpleNamespace, grid : SimpleNamesp
             eventFolder = currentStudycase.CreateObject('IntEvt')
 
         faultType = 3 - math.ceil(case.FaultType/3) # Map from EMT-lile fault numbering to PF numbering
-        faultStart = 3 # All faults happen at t = 3s
+        faultStart = case.events[0][0] # Fault start time is defined in the TestCases.xlsx sheet under 'C1start' 
         faultStop = faultStart + case.FaultPeriod
 
         case.FaultDepth = min(case.FaultDepth, case.U0 - 0.001)
